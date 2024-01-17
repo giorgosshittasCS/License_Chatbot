@@ -1,0 +1,152 @@
+
+body{
+    background-color: #4c4177;
+    background-image: linear-gradient(315deg, #4c4177 0%, #2a5470 74%);
+    font-family: 'Montserrat';
+    color:#000000;
+  }
+  .refresh-block{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .button {
+    color: white;
+    background-color: #222;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+  }
+  
+  .button:hover {
+    background-color: #333;
+  }
+  
+  .button svg {
+    display: inline;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 0.75rem;
+    color: white;
+  }
+  
+  .button:focus svg {
+    animation: spin_357 0.5s linear;
+  }
+  
+  @keyframes spin_357 {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+.chat-block{
+  margin-top:30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bot-icon-block{
+  height:100px;
+  width:100px;
+  border-radius: 100px;
+  margin-left:30px;
+  background-color: white;
+}
+.question-block{
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(246, 242, 242, 0.1);
+  z-index: 2;
+  max-width: 600px;
+  border-radius: 10px;
+  padding:20px;
+  margin-left: 50px;
+}
+.licenses-block{
+  background-color: transparent;
+  box-shadow: 4px 4px 8px rgba(244, 240, 240, 0.5);
+  z-index: 2;
+  max-width: 800px;
+  border-radius: 10px;
+  border: 2px solid white;
+  padding:20px;
+  margin-left: 30px;
+  color:white;
+}
+.recommendations-block{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top:30px;
+}
+.recommendation-text{
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(246, 242, 242, 0.1);
+  z-index: 2;
+  width:fit-content;
+  height:fit-content;
+  border-radius: 10px;
+  padding:20px;
+  margin-left: 10px;
+}
+
+.bot-image{
+  object-fit: cover;
+  height:inherit;
+  width: inherit;
+  border-radius: 100px;
+}
+.option {
+  height: 50px;
+  width:130px;
+  text-align: center;
+  border: 2px solid white; /* Set the white border */
+  background-color: transparent; /* Set the background color to transparent */
+  margin: 10px; /* Add margin for spacing */
+  padding: 10px;
+  border-radius: 20px;
+  color:white;
+  font-family: 'Montserrat';
+}
+.options-block{
+  display: flex;
+  flex-direction: row;
+  margin-left: 180px;
+  margin-top: 10px;
+}
+.yes-block:hover{
+  background-color: rgb(39, 203, 39);
+}
+.no-block:hover{
+  background-color: red;
+}
+.neutral-block:hover{
+  background-color: orange;
+}
+.green{
+  background-color: rgb(39, 203, 39);
+}
+.red{
+  background-color: red;
+}
+.orange{
+  background-color: orange;
+}
+

@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Other head elements -->
+    {% if mainjs %}
+        <script type="module" src="{{ url_for('static', filename='app2/build/static/js/' + mainjs) }}"></script>
+    {% endif %}
+</head>
+<body>
+    <!-- Your HTML body content -->
+</body>
+</html>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="first"><div class="animate__fadeInLeft box"><text>Welcome to Licy!</text></div></div>
+        <div class="second animate__lightSpeedInLeft"><text>A license assistant chatbot created to 
+            help you choose the appropriate license for your software</text></div>
+        <div class="third animate__lightSpeedInLeft"><text>You will be asked a series of questions and the chatbot will suggest you some licenses that match with your preferences</text></div>
+        <button id="moveToChatbot">Next</button>
+        <script>
+            // Add a click event listener to the button
+            document.getElementById('moveToChatbot').addEventListener('click', function() {
+                // Redirect to the specified URL (Page 2 route in this case)
+                window.location.href = "{{ url_for('chatbot') }}";
+            });
+        </script>
+        <!-- <div id="root"></div> -->
+    </div>
+</body>
+</html>

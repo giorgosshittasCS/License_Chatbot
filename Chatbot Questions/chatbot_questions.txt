@@ -1,0 +1,17 @@
+Do you want your software to be used in proprietary (closed-source) applications? | key: !disclose-source
+
+Do you want to allow sublicensing of your software? | key: sublicense
+
+Permit others to apply different licensing terms on your work? | key: !same-license
+
+Do you want to specify that any modifications made to your software must be indicated when redistributed? | key: document-changes
+
+Are you concerned about copyright, patents, or trademarks in your work? | key: None
+
+Do you want the original copyright to be retained? | key: include-copyright
+
+Do you want to permit the rights to practice patent claims of contributors to the code? | key: patent-use
+
+Do you want to permit the use of trademarks in your work? | key: !trademark-use
+
+Allow users ,who interact with the licensed material via a network, to receive a copy of the source code? | key: network-use-disclose
