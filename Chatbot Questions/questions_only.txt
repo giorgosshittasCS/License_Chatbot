@@ -1,0 +1,40 @@
+Do you want your software to be used in proprietary (closed-source) applications? 
+
+Do you want to allow sublicensing of your software? 
+
+Permit others to apply different licensing terms on your work? 
+
+Do you want to specify that any modifications made to your software must be indicated when redistributed? 
+
+Are you concerned about copyright, patents, or trademarks in your work? 
+
+Do you want the original copyright to be retained? 
+
+Do you want to permit the rights to practice patent claims of contributors to the code? 
+
+Do you want to permit the use of trademarks in your work? 
+
+Allow users ,who interact with the licensed material via a network, to receive a copy of the source code? 
+
+
+Suppose i have these questions for a License chatbot that is responsible with a series of question to recommend the best available license based on the customer needs. 
+Questions :"
+Do you want your software to be used in proprietary (closed-source) applications? 
+
+Do you want to allow sublicensing of your software? 
+
+Permit others to apply different licensing terms on your work? 
+
+Do you want to specify that any modifications made to your software must be indicated when redistributed? 
+
+Are you concerned about copyright, patents, or trademarks in your work? 
+
+Do you want the original copyright to be retained? 
+
+Do you want to permit the rights to practice patent claims of contributors to the code? 
+
+Do you want to permit the use of trademarks in your work? 
+
+Allow users ,who interact with the licensed material via a network, to receive a copy of the source code? 
+". 
+What is the correct sequence of the questions that should be asked and based on the answer "Yes" or "No" or "Don't Mind" which question should be unlocked?

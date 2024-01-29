@@ -10,14 +10,15 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
     <title>Document</title>
 </head>
 <body>
     <div class="main-container">
         <div class="first"><div class="animate__fadeInLeft box"><text>Welcome to Licy!</text></div></div>
-        <div class="second animate__lightSpeedInLeft"><text>A license assistant chatbot created to 
+        <div id="second" ><text>A license assistant chatbot created to 
             help you choose the appropriate license for your software</text></div>
-        <div class="third animate__lightSpeedInLeft"><text>You will be asked a series of questions and the chatbot will suggest you some licenses that match with your preferences</text></div>
+        <div id="third" ><text>You will be asked a series of questions and the chatbot will suggest you some licenses that match with your preferences</text></div>
         <button id="moveToChatbot">Next</button>
         <script>
             // Add a click event listener to the button

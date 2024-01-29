@@ -6,7 +6,8 @@
     "commercial-use",
     "distribution",
     "modifications",
-    "private-use"
+    "private-use",
+    "patent-use"
   ],
   "conditions": [
     "disclose-source",
@@ -15,7 +16,6 @@
   ],
   "limitations": [
     "liability",
-    "patent-use",
     "trademark-use",
     "warranty"
   ]

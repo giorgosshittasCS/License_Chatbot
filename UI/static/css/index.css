@@ -33,14 +33,12 @@ font-family: 'Montserrat';
 text{
     padding: 70px 20px;
 }
-.second,.third{
+#second,#third{
     margin-top: 70px;
     font-size: 30px;
     text-align: center;
     font-style: normal;
-    animation-duration: 1s;
-    
-
+    visibility: hidden;
 }
 button{
     margin-top: 30px;
@@ -58,6 +56,7 @@ button{
     background: linear-gradient(42deg, rgba(67,216,51,1) 19%, rgba(61,177,93,1) 79%);
     box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+    visibility: hidden;
     
     
 }

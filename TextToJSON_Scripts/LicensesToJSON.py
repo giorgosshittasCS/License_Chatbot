@@ -1,5 +1,6 @@
 import os
 import json
+import shutil
 
 
 def list_files_in_directory(directory):
@@ -14,6 +15,15 @@ def list_files_in_directory(directory):
 def license_to_json(folder_path):
     licenses = []
     filenames = list_files_in_directory(folder_path)
+    folder_path2 = "../newJSON"  # Replace with the desired folder path
+
+    # Ensure the specified folder exists
+    if not os.path.exists(folder_path2):
+        os.makedirs(folder_path2)
+    else:
+        shutil.rmtree(folder_path2)
+        os.makedirs(folder_path2)
+
     for filename in filenames:
         with open(folder_path + filename, "r") as file:
             lines = file.readlines()
@@ -58,11 +68,6 @@ def license_to_json(folder_path):
             "conditions": conditions,
             "limitations": limitations,
         }
-        folder_path2 = "../newJSON"  # Replace with the desired folder path
-
-        # Ensure the specified folder exists
-        if not os.path.exists(folder_path2):
-            os.makedirs(folder_path2)
 
         # Construct the full file path
         file_path = os.path.join(folder_path2, spdx_id + ".json")
@@ -74,4 +79,4 @@ def license_to_json(folder_path):
             json_file.write(json_data)
 
 
-license_to_json("../_licenses/")
+license_to_json("../licenses/")
