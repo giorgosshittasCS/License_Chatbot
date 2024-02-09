@@ -16,7 +16,6 @@ permissions:
   - modifications
   - distribution
   - private-use
-  - patent-use
 
 conditions:
   - include-copyright
