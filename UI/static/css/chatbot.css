@@ -10,7 +10,11 @@ body{
     display: flex;
     /* overflow-x: auto; */
   }
-  
+  .dropdown-arrow{
+    color: white;
+    font-size: 25px;
+    margin-left: 20px;
+  }
   .refresh-block{
     display:flex;
     flex-direction: row;
@@ -50,6 +54,19 @@ body{
   
   .button:focus svg {
     animation: spin_357 0.5s linear;
+  }
+  .explanation-block{
+    background-color: transparent;
+    box-shadow: 4px 4px 8px rgba(244, 240, 240, 0.5);
+    z-index: 2;
+    max-width: 800px;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding:20px;
+    margin-left: 180px;
+    color:white;
+    margin-top: 30px;
+    display: none;
   }
   
   @keyframes spin_357 {

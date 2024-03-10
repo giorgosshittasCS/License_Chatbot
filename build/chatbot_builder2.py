@@ -64,6 +64,7 @@ def read_questions(filepath, licenses):
     # Extract the arrays from the JSON data
     questions = data["questions"]
     keys = data["keys"]
+    question_explanations = data["question_explanations"]
 
     for i in range(len(keys)):
         key_questions[keys[i]] = questions[i]
@@ -91,7 +92,7 @@ def read_questions(filepath, licenses):
         positive_subsets.append(positive_subset)
         negative_subsets.append(negative_subset)
 
-    return questions, positive_subsets, negative_subsets
+    return questions, positive_subsets, negative_subsets, question_explanations
 
 
 def get_num_nodes(file_path):
@@ -108,7 +109,9 @@ def get_num_nodes(file_path):
     return max_value
 
 
-def create_nodes(file_path, questions, positive_subsets, negative_subsets):
+def create_nodes(
+    file_path, questions, positive_subsets, negative_subsets, question_explanations
+):
     nodes = []
     for i in range(get_num_nodes(file_path)):
         nodes.append(Node(i + 1))
@@ -129,7 +132,7 @@ def create_nodes(file_path, questions, positive_subsets, negative_subsets):
         parts3 = line3.replace(" ", "").split("->")
 
         node_index = int(parts1[0]) - 1
-        options=["Yes","No"]
+        options = ["Yes", "No"]
 
         if parts1[1] != "end":
             positive_node = nodes[int(parts1[1]) - 1]
@@ -143,12 +146,12 @@ def create_nodes(file_path, questions, positive_subsets, negative_subsets):
 
         if parts3[1] == "end":
             neutral_node = None
-            options.append("Don't Mind")
+            options.append("Don't Care")
         elif parts3[1] == "none" or parts3[1] == "None":
             neutral_node = None
         else:
             neutral_node = nodes[int(parts3[1]) - 1]
-            options.append("Don't Mind")
+            options.append("Don't Care")
 
         current_node = nodes[node_index]
         current_node.build_node(
@@ -158,7 +161,8 @@ def create_nodes(file_path, questions, positive_subsets, negative_subsets):
             [questions[node_index]],
             positive_subsets[node_index],
             negative_subsets[node_index],
-            options
+            options,
+            question_explanations[node_index],
         )
         if positive_node is not None and positive_node.id > current_node.id:
             positive_node.set_parent(current_node)
@@ -171,33 +175,40 @@ def create_nodes(file_path, questions, positive_subsets, negative_subsets):
 
     return nodes
 
-async def getLicenseInfo(all_licenses,license_ids):
-    licenses=[]
-    licenses_titles=[]
+
+async def getLicenseInfo(all_licenses, license_ids):
+    licenses = []
+    licenses_titles = []
     print(all_licenses)
     print("----------------------------------------------------------------")
     print(license_ids)
     for id in license_ids:
         for license in all_licenses:
             if id == license.id:
-                licenses.append([license.permissions,license.conditions,license.limitations])
+                licenses.append(
+                    [license.permissions, license.conditions, license.limitations]
+                )
                 licenses_titles.append(license.title)
-    
+
     return {
         "licenses": licenses,
-        "licenses_titles": licenses_titles
+        "licenses_titles": licenses_titles,
     }
+
 
 # Example usage:
 paths = read_file_paths()
 licenses = read_licenses2(paths.get("licenses_folder"))
-questions, positive_subsets, negative_subsets = read_questions(
+questions, positive_subsets, negative_subsets, question_explanations = read_questions(
     paths.get("questions_file"), licenses
 )
 nodes = create_nodes(
-    paths.get("dependencies_file"), questions, positive_subsets, negative_subsets
+    paths.get("dependencies_file"),
+    questions,
+    positive_subsets,
+    negative_subsets,
+    question_explanations,
 )
-
 
 tree = Tree(nodes, nodes[0], set(positive_subsets[0]).union(set(negative_subsets[0])))
 
@@ -223,10 +234,12 @@ def question():
     )  # Run the asynchronous function
     return jsonify(result)
 
+
 @app.route("/table", methods=["POST"])
 def fetch_info():
-    result= asyncio.run(getLicenseInfo(licenses,tree.current_subset))
+    result = asyncio.run(getLicenseInfo(licenses, tree.current_subset))
     return jsonify(result)
+
 
 @app.route("/chatbot")
 def chatbot():
@@ -235,9 +248,9 @@ def chatbot():
         "chatbot.html",
         question=tree.current_node.questions[0],
         current_subset=tree.initial_subset,
+        question_explanation=tree.current_node.question_explanation,
     )
 
 
 if __name__ == "__main__":
     app.run()
-

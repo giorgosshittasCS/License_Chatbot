@@ -1,4 +1,7 @@
 var question_number =2;
+document.querySelector('#arrow-icon-1').addEventListener('click', function() {
+    handleExplanation(this);
+   });
 function Refresh(){
     location.reload();
 }
@@ -8,7 +11,7 @@ function handleAnswer(element) {
         element.classList.add("green");
     else if (answer =="No")
         element.classList.add("red");
-    else if(answer =="Don't Mind")
+    else if(answer =="Don't Care")
         element.classList.add("orange");
 
     var elements = document.getElementsByClassName('option');
@@ -58,7 +61,7 @@ async function displayTable() {
     }
     htmlCode += `</tr></thead><tbody>`;
     var counter=0;
-    console.log(data.licenses_titles);
+    
     for (let license of data.licenses) {
         let permissions = Object.values(license[0]);
         let conditions = Object.values(license[1]);
@@ -98,7 +101,21 @@ async function displayTable() {
  table_element=document.getElementById('table-container');
  table_element.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 }
-
+function handleExplanation(element){
+    const question_id= element.id.slice(-1)
+    const explanation_block= document.getElementById('explanation-block-'+question_id);
+    if (explanation_block.style.display==='block') {
+        explanation_block.style.display='none';
+        element.firstChild.className="";
+        element.firstChild.classList.add('bi',"bi-arrow-down-circle-fill","dropdown-arrow");
+    }
+    else{
+        explanation_block.style.display='block';
+        explanation_block.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        element.firstChild.className="";
+        element.firstChild.classList.add('bi',"bi-arrow-up-circle-fill","dropdown-arrow");
+    }   
+}
 function displayQuestion(data){
 var element=document.getElementById("conversation");
 var htmlString=`<div class="chat-block">
@@ -106,15 +123,18 @@ var htmlString=`<div class="chat-block">
 <img class="bot-image" src="static/images/bot.png" alt="">
 </div>
 <div id="question-${question_number}" class="question-block">${data.question}</div>
+<span class="arrow-icon" id="arrow-icon-${question_number}"><i class="bi bi-arrow-down-circle-fill dropdown-arrow"></i></span>
 </div>
+<div class="explanation-block" id="explanation-block-${question_number}">${data.question_explanation}</div>
 <div class="options-block">`;
 var options= `
 <button class="yes-block option" onclick="handleAnswer(this)">Yes</button>
 <button class="no-block option" onclick="handleAnswer(this)">No</button>
 `;
+console.log(data.question_explanation);
 
-if (data.options.includes("Don't Mind")){
-    options+= `<button class="neutral-block option" onclick="handleAnswer(this)">Don't Mind</button>`;
+if (data.options.includes("Don't Care")){
+    options+= `<button class="neutral-block option" onclick="handleAnswer(this)">Don't Care</button>`;
 }
 
 var recommendations=`</div><div class="recommendations-block">
@@ -123,8 +143,13 @@ var recommendations=`</div><div class="recommendations-block">
 </div>`;
 htmlString=recommendations+htmlString+options;
 element.insertAdjacentHTML('beforeend', htmlString);
-
+document.querySelector('#arrow-icon-'+question_number).addEventListener('click', function() {
+   handleExplanation(this);
+  });
 question_element=document.getElementById("question-"+question_number);
 question_element.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 question_number++;
 }
+
+
+

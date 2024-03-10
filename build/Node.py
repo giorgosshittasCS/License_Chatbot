@@ -9,7 +9,8 @@ class Node:
         self.positive_subset = None
         self.negative_subset = None
         self.current_subset = None
-        self.options= None
+        self.options = None
+        self.question_explanation = None
 
     def build_node(
         self,
@@ -19,7 +20,8 @@ class Node:
         questions,
         positive_subset,
         negative_subset,
-        options
+        options,
+        question_explanation,
     ):
         self.set_questions(questions)
         self.set_left_child(left_child)
@@ -29,7 +31,8 @@ class Node:
         self.negative_subset = [license for license in negative_subset]
         self.current_subset = list(set(positive_subset).union(set(negative_subset)))
         self.neutral_subset = self.current_subset
-        self.options=options
+        self.options = options
+        self.question_explanation = question_explanation
 
     def set_current_subset(self, subset):
         self.current_subset = [license for license in subset]
